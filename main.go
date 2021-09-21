@@ -8,9 +8,10 @@ import (
 	"os"
 	"text/tabwriter"
 
-	loggly "loggly"
 	"net/http"
 	"time"
+
+	loggly "github.com/jamespearly/loggly"
 )
 
 func main() {
@@ -129,7 +130,7 @@ func main() {
 				fmt.Sprint(team.GoalDifference)+"\t"+
 				fmt.Sprint(team.Points))
 		}
-
+		fmt.Fprintln(writer, "")
 		writer.Flush()
 		client.EchoSend("info", "The api returned Competition "+data.Competition.Name+" is held from "+data.Season.StartDate+" to "+data.Season.EndDate)
 	}
